@@ -8,8 +8,6 @@ const Navbar = ({ onOpenCreate }) => {
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-        // Implement search logic if backend supports it. 
-        // For now just console log or maybe alert "Coming soon" as strictly asked for specific routes only.
         console.log("Searching for:", search);
     }
   };
@@ -81,7 +79,6 @@ const Navbar = ({ onOpenCreate }) => {
              justifyContent: 'center'
            }}
         >
-          {/* Fallback avatar */}
            <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#333' }} />
         </button>
       </div>

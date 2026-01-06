@@ -77,10 +77,6 @@ app.post("/login", async (req, res) => {
 // --- Poem Routes ---
 
 app.get("/poems/feed", async (req, res) => {
-    // Random feed: Prisma doesn't support ORDER BY RANDOM natively easily across DBs,
-    // but for Postgres we can use raw query or just skip/take logic.
-    // For simplicity and beginner friendliness, we'll fetch latest for now, 
-    // or use raw query if strictly needed. User asked for "ORDER BY RANDOM()".
     try {
         const poems = await prisma.$queryRaw`
        SELECT p.id, p.title, p.content, p."likesCount", p."createdAt", p."authorId", 
@@ -90,30 +86,17 @@ app.get("/poems/feed", async (req, res) => {
        ORDER BY RANDOM()
        LIMIT 20;
      `;
-        // Note: Relation loading with raw query is tricky for arrays like genres/comments.
-        // To keep it simple and consistent with other routes, let's use Prisma findMany with shuffle in memory (if specific for random)
-        // or just normal query. User asked for RANDOM. Raw query is best for that.
-        // However, fetching relations (Genres, Likes) is annoying with raw SQL.
-        // Fallback: Fetch all (or many) and shuffle, or pick random IDs.
-        // Better approach for strict requirements:
-        // Fetch using findMany, but we want random.
-        // Let's stick to 'createdAt' desc for now as a fallback if random is too complex to keep "Simple".
-        // But user insisted on "Feed: Random poems".
-        // Easy way: Get count, pick random skip.
-
         const count = await prisma.poem.count();
         const skip = Math.max(0, Math.floor(Math.random() * count) - 20);
         const feed = await prisma.poem.findMany({
             take: 20,
-            skip: skip, // Quasi-random window
+            skip: skip,
             include: {
                 author: { select: { name: true } },
                 genres: { include: { genre: true } },
                 _count: { select: { comments: true } }
             },
-            // No order by, default usually ID
         });
-        // Shuffle in JS
         const shuffled = feed.sort(() => 0.5 - Math.random());
         res.json(shuffled);
     } catch (err) {
@@ -180,7 +163,6 @@ app.get("/poems/mine", authenticateToken, async (req, res) => {
 
 app.post("/poems/create", authenticateToken, async (req, res) => {
     const { title, content, genreIds } = req.body;
-    // genreIds should be array of Int
     try {
         const poem = await prisma.poem.create({
             data: {
@@ -278,7 +260,6 @@ app.get("/profile/:userId", authenticateToken, async (req, res) => {
                 _count: { select: { poems: true } }
             }
         });
-        // Don't send password
         const { password, ...userData } = user;
         res.json(userData);
     } catch (err) {
@@ -289,8 +270,6 @@ app.get("/profile/:userId", authenticateToken, async (req, res) => {
 app.put("/profile/:userId", authenticateToken, async (req, res) => {
     const { userId } = req.params;
     const { name, email, password } = req.body;
-
-    // Basic security: only allow editing own profile
     if (parseInt(userId) !== req.user.id) {
         return res.status(403).json({ error: "Forbidden" });
     }

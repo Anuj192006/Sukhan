@@ -3,7 +3,7 @@ import { Heart, MessageSquare } from 'lucide-react';
 import api from '../api';
 
 const PoemCard = ({ poem }) => {
-  const [liked, setLiked] = useState(false); // In real app, check if user liked
+  const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(poem.likesCount);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
@@ -103,7 +103,6 @@ const PoemCard = ({ poem }) => {
         <button onClick={loadComments} style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)' }}>
           <MessageSquare size={20} />
           <span>{(poem._count?.comments || 0) + comments.length}</span> 
-          {/* Note: simplistic count update */}
         </button>
       </div>
 

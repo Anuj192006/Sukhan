@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
+import './Auth.css';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -33,7 +34,7 @@ const Auth = () => {
       justifyContent: 'center', 
       background: 'radial-gradient(circle at center, #1e293b 0%, #000000 100%)'
     }}>
-      <div className="glass" style={{ width: '400px', padding: '2.5rem', borderRadius: '16px', textAlign: 'center' }}>
+      <div className="glass auth-card" style={{ width: '400px', padding: '2.5rem', borderRadius: '16px', textAlign: 'center' }}>
         <h1 className="urdu-font" style={{ fontSize: '3.5rem', color: 'var(--primary)', marginBottom: '0.5rem' }}>Sukhan</h1>
         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>Where words find their soul.</p>
 

@@ -1,0 +1,49 @@
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100% !important;
+        height: 60px !important;
+        top: auto !important;
+        bottom: 0 !important;
+        flex-direction: row !important;
+        padding: 0.5rem !important;
+        justify-content: space-around !important;
+        border-right: none !important;
+        border-top: 1px solid var(--border-color) !important;
+    }
+
+    .sidebar h1 {
+        /* Hide Logo */
+        display: none !important;
+    }
+
+    .sidebar>div:first-child {
+        /* Hide header container specifically if h1 inside */
+        display: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    .sidebar button {
+        /* Hide Logout button */
+        display: none !important;
+    }
+
+    .sidebar nav {
+        flex-direction: row !important;
+        gap: 0 !important;
+        justify-content: space-around !important;
+        width: 100% !important;
+    }
+
+    .sidebar nav a {
+        flex-direction: column !important;
+        padding: 5px !important;
+        gap: 2px !important;
+        background: transparent !important;
+        /* Remove active bg on mobile maybe? or keep it small */
+    }
+
+    .sidebar nav a span {
+        display: none !important;
+        /* Hide labels */
+    }
+}

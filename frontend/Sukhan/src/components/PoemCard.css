@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+    .poem-card {
+        padding: 1rem !important;
+    }
+
+    .poem-card h3 {
+        font-size: 1.25rem !important;
+    }
+}

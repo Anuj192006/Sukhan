@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+    .content-area {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1rem !important;
+        padding-bottom: 80px !important;
+    }
+
+    .content-area h2 {
+        font-size: 1.5rem !important;
+    }
+}

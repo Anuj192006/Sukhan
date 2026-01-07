@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+    .auth-card {
+        width: 90% !important;
+        padding: 1.5rem !important;
+    }
+
+    .auth-card h1 {
+        font-size: 2.5rem !important;
+    }
+}

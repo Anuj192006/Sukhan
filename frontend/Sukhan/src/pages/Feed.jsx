@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import PoemCard from '../components/PoemCard';
 import { RefreshCw } from 'lucide-react';
+import './Feed.css';
 
 const Feed = ({ endpoint, title, isRandom }) => {
   const [poems, setPoems] = useState([]);

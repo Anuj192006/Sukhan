@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { X } from 'lucide-react';
+import './CreatePoemModal.css';
 
 const CreatePoemModal = ({ onClose, onCreated }) => {
   const [title, setTitle] = useState('');
@@ -37,7 +38,7 @@ const CreatePoemModal = ({ onClose, onCreated }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="glass" onClick={e => e.stopPropagation()} style={{
+      <div className="glass modal-content" onClick={e => e.stopPropagation()} style={{
         width: '600px',
         padding: '2rem',
         borderRadius: '16px',

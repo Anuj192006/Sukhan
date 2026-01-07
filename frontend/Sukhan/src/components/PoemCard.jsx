@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, MessageSquare } from 'lucide-react';
 import api from '../api';
+import './PoemCard.css';
 
 const PoemCard = ({ poem }) => {
   const [liked, setLiked] = useState(false);
@@ -49,7 +50,7 @@ const PoemCard = ({ poem }) => {
   };
 
   return (
-    <div className="glass" style={{
+    <div className="glass poem-card" style={{
       marginBottom: '1.5rem',
       padding: '1.5rem',
       borderRadius: '16px',

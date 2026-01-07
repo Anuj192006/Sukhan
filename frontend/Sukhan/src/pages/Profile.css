@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+    .content-area {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1rem !important;
+        padding-bottom: 80px !important;
+        /* Space for bottom nav */
+    }
+
+    .profile-card {
+        padding: 1.5rem !important;
+    }
+
+    .profile-card h2 {
+        font-size: 2rem !important;
+    }
+}

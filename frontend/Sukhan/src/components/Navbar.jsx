@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, UserPlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = ({ onOpenCreate }) => {
   const [search, setSearch] = useState('');
@@ -13,7 +14,7 @@ const Navbar = ({ onOpenCreate }) => {
   };
 
   return (
-    <div className="glass" style={{
+    <div className="glass navbar" style={{
       position: 'fixed',
       top: 0,
       right: 0,
@@ -26,7 +27,7 @@ const Navbar = ({ onOpenCreate }) => {
       zIndex: 40,
       borderBottom: '1px solid var(--glass-border)'
     }}>
-      <div style={{ position: 'relative', width: '400px' }}>
+      <div className="search-container" style={{ position: 'relative', width: '400px' }}>
         <Search style={{ 
           position: 'absolute', 
           left: '12px', 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Layout, Star, Heart, User, PenTool, LogOut } from 'lucide-react';
+import './Sidebar.css';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div style={{
+    <div className="sidebar" style={{
       width: '25%',
       height: '100vh',
       position: 'fixed',

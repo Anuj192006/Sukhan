@@ -1,0 +1,16 @@
+@media (max-width: 768px) {
+    .navbar {
+        width: 100% !important;
+        left: 0 !important;
+        padding: 0 1rem !important;
+        justify-content: space-between !important;
+    }
+
+    .search-container {
+        width: 120px !important;
+    }
+
+    .navbar input {
+        width: 100% !important;
+    }
+}

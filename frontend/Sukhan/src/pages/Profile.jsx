@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import PoemCard from '../components/PoemCard';
+import './Profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -39,7 +40,7 @@ const Profile = () => {
 
   return (
     <div className="content-area">
-      <div className="glass" style={{
+      <div className="glass profile-card" style={{
         padding: '2rem',
         borderRadius: '16px',
         marginBottom: '3rem',

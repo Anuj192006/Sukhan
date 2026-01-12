@@ -7,6 +7,8 @@ import Feed from './pages/Feed';
 import Profile from './pages/Profile';
 import Auth from './pages/Auth';
 import './App.css';
+import { useSearchParams } from 'react-router-dom';
+import SearchPage from './components/SearchPage';
 
 const ProtectedLayout = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -49,7 +51,8 @@ function App() {
           <Route path="/top" element={<Feed endpoint="/poems/top" title="Top Verses" />} />
           <Route path="/liked" element={<Feed endpoint="/poems/liked" title="Liked Poems" />} />
           <Route path="/mine" element={<Feed endpoint="/poems/mine" title="My Ink" />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="users/search" element={<SearchPage />}/>
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

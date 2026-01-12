@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Heart, MessageSquare } from 'lucide-react';
 import api from '../api';
 import './PoemCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const PoemCard = ({ poem }) => {
   const [liked, setLiked] = useState(false);
@@ -10,6 +11,7 @@ const PoemCard = ({ poem }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
+  const navigate = useNavigate();
   const toggleLike = async () => {
     try {
       const res = await api.post(`/likes/${poem.id}`);
@@ -62,7 +64,7 @@ const PoemCard = ({ poem }) => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.25rem', fontFamily: 'Playfair Display' }}>{poem.title}</h3>
-           <span style={{ fontSize: '0.9rem', color: 'var(--primary)' }}>by {poem.author?.name || 'Unknown'}</span>
+           <span onClick={() => navigate(`/profile/${poem.authorId}`)} style={{ fontSize: '0.9rem', color: 'var(--primary)', cursor: 'pointer'}}>{poem.author?.name || 'Unknown'}</span>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
           {poem.genres?.map(g => (

@@ -122,6 +122,43 @@ app.get("/poems/top", async (req, res) => {
     }
 });
 
+app.get('/poems/user/:userId',authenticateToken,async(req,res)=>{
+    const userId = req.params.userId? Number(req.params.userId):req.user.id
+    try {
+        const poems = await prisma.poem.findMany({
+            where: { authorId: userId },
+            orderBy: { createdAt: "desc" },
+            include: {
+                author: { select: { name: true } },
+                genres: { include: { genre: true } },
+                _count: { select: { comments: true } }
+            },
+        });
+        res.json(poems);
+    } catch (err) {
+        res.status(500).json({ error: "Error fetching poems by user" });
+    }
+})
+
+app.get("/users/search", async (req, res) => {
+    const { q } = req.query;
+    if (!q) return res.json([]);
+    try {
+        const users = await prisma.user.findMany({
+            where: {
+                name: { contains: q, mode: 'insensitive' }
+            },
+            include: {
+                _count: { select: { poems: true } }
+            },
+            take: 20
+        });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ error: "Search failed" });
+    }
+});
+
 app.get("/poems/liked", authenticateToken, async (req, res) => {
     try {
         const likes = await prisma.like.findMany({

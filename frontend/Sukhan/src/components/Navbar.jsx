@@ -8,8 +8,9 @@ const Navbar = ({ onOpenCreate }) => {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    if (e.key === 'Enter') {
-        console.log("Searching for:", search);
+    if (e.key === 'Enter' && search.trim()) {
+        navigate(`/users/search?q=${encodeURIComponent(search)}`);
+        
     }
   };
 
@@ -68,7 +69,7 @@ const Navbar = ({ onOpenCreate }) => {
         </button>
         
         <button 
-           onClick={() => navigate('/profile')}
+           onClick={() => navigate(`/profile/${localStorage.getItem('userId')}`)}
            style={{
              width: '40px', 
              height: '40px', 

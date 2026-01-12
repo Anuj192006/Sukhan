@@ -16,7 +16,7 @@ const Sidebar = () => {
     { to: '/top', label: 'Top Poems', icon: <Star size={20} /> },
     { to: '/liked', label: 'Liked', icon: <Heart size={20} /> },
     { to: '/mine', label: 'Your Poems', icon: <PenTool size={20} /> },
-    { to: '/profile', label: 'Profile', icon: <User size={20} /> },
+    { to: `/profile/${localStorage.getItem('userId')}`, label: 'Profile', icon: <User size={20} /> }
   ];
 
   return (

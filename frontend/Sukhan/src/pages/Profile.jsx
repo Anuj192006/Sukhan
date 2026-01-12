@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import PoemCard from '../components/PoemCard';
 import './Profile.css';
+import { useParams } from 'react-router-dom';
 
 const Profile = () => {
+  const { userId } = useParams();
   const [user, setUser] = useState(null);
   const [poems, setPoems] = useState([]); 
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState({ name: '', email: '', password: '' });
 
-  const userId = localStorage.getItem('userId');
+  // const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +19,7 @@ const Profile = () => {
         const userRes = await api.get(`/profile/${userId}`);
         setUser(userRes.data);
         setEditForm({ name: userRes.data.name, email: userRes.data.email, password: '' });
-        const poemsRes = await api.get('/poems/mine');
+        const poemsRes = await api.get(`/poems/user/${userId}`);
         setPoems(poemsRes.data);
       } catch (err) {
         console.error(err);
@@ -49,9 +51,9 @@ const Profile = () => {
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
            <h2 className="urdu-font" style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>Khush-aamdeed, {user.name}</h2>
-           <button onClick={() => setIsEditing(!isEditing)} style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>
+           {localStorage.getItem('userId') === userId && (<button onClick={() => setIsEditing(!isEditing)} style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>
              {isEditing ? 'Cancel' : 'Edit Profile'}
-           </button>
+           </button>)}
         </div>
 
         {!isEditing ? (

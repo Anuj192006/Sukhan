@@ -10,9 +10,6 @@ const Profile = () => {
   const [poems, setPoems] = useState([]); 
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState({ name: '', email: '', password: '' });
-
-  // const userId = localStorage.getItem('userId');
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +47,7 @@ const Profile = () => {
         background: 'linear-gradient(145deg, rgba(204,164,59,0.05) 0%, rgba(10,10,10,0.8) 100%)'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-           <h2 className="urdu-font" style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>Khush-aamdeed, {user.name}</h2>
+           <h2 className="urdu-font" style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>{user.name}</h2>
            {localStorage.getItem('userId') === userId && (<button onClick={() => setIsEditing(!isEditing)} style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>
              {isEditing ? 'Cancel' : 'Edit Profile'}
            </button>)}
